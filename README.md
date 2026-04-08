@@ -1,2 +1,2 @@
-# Game-Project-DevOps
+# Game-Project-LightPress
 Proyecto para DevOps, videojuego web 
