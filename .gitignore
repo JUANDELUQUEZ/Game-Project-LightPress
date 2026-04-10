@@ -1,0 +1,19 @@
+#Ignorar las dependencias del proyecto ya que consumen espacio
+node_modules/
+client/node_modules/
+server/node_modules
+
+#Variables de entorno
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+server/.env
+client/.env
+
+#build y compilados
+client/build/
+client/dist/
+build/
+dist/
