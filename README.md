@@ -40,7 +40,7 @@ Durante la maquetación de la interfaz gráfica, se priorizó la fidelidad al wi
 
 1.  **Clonar el repositorio:**
     ```bash
-    git clone [URL_DEL_REPOSITORIO]
+    git clone https://github.com/JUANDELUQUEZ/Game-Project-LightPress.git
     cd Game-Project-LightPress
     ```
 
@@ -54,4 +54,4 @@ Durante la maquetación de la interfaz gráfica, se priorizó la fidelidad al wi
     El servidor de desarrollo se ejecutará en `http://localhost:5173/`.
 
 ---
-*Documentación mantenida por el equipo de ingeniería de Devs-ColMex.*
+*Documentación mantenida por el equipo de ingeniería del grupo no se cual vale chico*
