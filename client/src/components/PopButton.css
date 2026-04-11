@@ -1,0 +1,24 @@
+/* client/src/components/PopButton.css */
+
+.pop-btn {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 2px solid var(--border-main);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  background-color: var(--btn-off);
+}
+
+/* Estado Inactivo por defecto */
+.pop-btn.off {
+  background-color: var(--btn-off);
+  box-shadow: none;
+}
+
+/* Estado Activo (Neón) */
+.pop-btn.on {
+  background-color: var(--btn-on);
+  box-shadow: var(--btn-glow);
+  transform: scale(1.05); /* Pequeño feedback visual al activarse */
+}

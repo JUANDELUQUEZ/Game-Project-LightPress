@@ -1,0 +1,120 @@
+/* client/src/index.css */
+
+:root {
+  --primary-bg: #abd6f3;
+  --board-bg: #eaf5ff;
+  --board-shadow: 0 28px 70px rgba(14, 30, 37, 0.12);
+  --element-block: #fde68a;
+  --btn-off: #fde68a;
+  --btn-on: #f59e0b;
+  --border-main: #000000;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  background-color: var(--primary-bg);
+  color: var(--border-main);
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem 1rem 3rem;
+}
+
+.app-container {
+  width: min(100%, 1200px);
+}
+
+.game-header {
+  width: 100%;
+  margin: 0 auto 2rem;
+  padding: 1.2rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border: 2px solid var(--border-main);
+  border-radius: 24px;
+  background-color: rgba(255, 255, 255, 0.85);
+  box-shadow: var(--board-shadow);
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: clamp(1.8rem, 2.4vw, 2.4rem);
+  letter-spacing: 0.08rem;
+}
+
+.user-stats {
+  display: flex;
+  gap: 1.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  justify-content: center;
+  flex: 1;
+}
+
+.header-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.icon-btn {
+  width: 2.4rem;
+  height: 2.4rem;
+  border: 2px solid var(--border-main);
+  background-color: var(--element-block);
+  color: var(--border-main);
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(45deg);
+  border-radius: 0.45rem;
+}
+
+.icon-btn span {
+  display: inline-block;
+  transform: rotate(-45deg);
+}
+
+.game-area {
+  display: flex;
+  gap: 2rem;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.game-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  flex-shrink: 0;
+  width: 250px;
+}
+
+.game-sidebar .mode-block,
+.game-sidebar .score-block {
+  background-color: var(--element-block);
+  border: 2px solid var(--border-main);
+  padding: 2rem;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.game-sidebar h2,
+.game-sidebar h3 {
+  margin: 0;
+  color: var(--border-main);
+  font-weight: bold;
+}
