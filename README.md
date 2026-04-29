@@ -15,7 +15,6 @@ El proyecto está estructurado como un monorepo que separa estrictamente los ent
 * **Base de Datos:** MySQL (Por definir)
 * **Estilos:** CSS3 Puro (Uso intensivo de CSS Variables y CSS Grid)
 
-
 ---
 
 ## 🎨 Decisiones de Diseño e Ingeniería (Frontend - Fase 1)
