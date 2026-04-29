@@ -6,14 +6,14 @@
   <title>LightPress - Prueba rápida</title>
   <style>
     :root {
-      --primary-bg: #abd6f3;
+      --primary-bg: #dc1717;
       --board-bg: #eaf5ff;
       --element-block: #fde68a;
-      --btn-off: #fde68a;
-      --btn-on: #f59e0b;
+      --btn-off: #9bfd8a;
+      --btn-on: #0bf5e9;
       --border-main: #000;
-      --success: #22c55e;
-      --danger: #ef4444;
+      --success: #3522c5;
+      --danger: #ef9744;
       --shadow: 0 28px 70px rgba(14, 30, 37, 0.12);
     }
 
@@ -41,7 +41,7 @@
       gap: 1rem;
       border: 2px solid var(--border-main);
       border-radius: 24px;
-      background: rgba(255, 255, 255, 0.85);
+      background: rgba(0, 255, 255, 0.799);
       box-shadow: var(--shadow);
     }
 
@@ -113,7 +113,7 @@
       font-weight: 900; font-size: 1.05rem; box-shadow: inset 0 -6px 0 rgba(0,0,0,.12);
     }
     .pop-btn:disabled { cursor: not-allowed; }
-    .pop-btn.on { background: var(--btn-on); box-shadow: 0 0 24px rgba(245,158,11,.95), 0 0 58px rgba(245,158,11,.45); transform: scale(1.08); }
+    .pop-btn.on { background: var(--btn-on); box-shadow: 0 0 24px rgba(245, 11, 202, 0.95), 0 0 58px rgba(245,158,11,.45); transform: scale(1.08); }
     .pop-btn.feedback-correct { background: var(--success); box-shadow: 0 0 22px rgba(34,197,94,.8); transform: scale(1.12); }
     .pop-btn.feedback-wrong { background: var(--danger); box-shadow: 0 0 22px rgba(239,68,68,.8); transform: scale(.92); }
 
@@ -154,11 +154,16 @@
           <strong class="score-value" id="score">0</strong>
           <div class="stats-grid">
             <span>Nivel</span><strong id="level">1</strong>
-            <span>Vidas</span><strong id="lives">♥♥♥</strong>
+            <span>Vidas</span><strong id="lives">☆ ✰ ✩</strong>
             <span>Combo</span><strong id="combo">0</strong>
             <span>Secuencia</span><strong id="sequenceLength">0</strong>
           </div>
         </div>
+        <div class="score-block" style="min-height: auto; margin-top: 1rem;">
+  <p class="sidebar-label">Top Récords</p>
+  <ul id="highScoresList" style="list-style: none; padding: 0; margin: 0; text-align: left; width: 100%;">
+    </ul>
+</div>
       </aside>
 
       <section class="play-section">
@@ -174,7 +179,7 @@
 
   <script>
     const BUTTON_COUNT = 11;
-    const MAX_LIVES = 3;
+    const MAX_LIVES = 1;
     const CLASSIC_START_TIME = 3000;
     const MIN_CLASSIC_TIME = 1200;
     const MEMORY_SHOW_TIME = 650;
@@ -259,7 +264,7 @@
       scoreEl.textContent = score;
       coinsEl.textContent = score;
       levelEl.textContent = level;
-      livesEl.textContent = '♥'.repeat(lives) + '♡'.repeat(MAX_LIVES - lives);
+      livesEl.textContent = '☆'.repeat(lives) + '♡'.repeat(MAX_LIVES - lives);
       comboEl.textContent = combo;
       sequenceLengthEl.textContent = sequence.length;
       messageEl.textContent = message;
@@ -294,6 +299,12 @@
       activeButton = null;
       mainAction.textContent = 'Reiniciar';
       updateUI(message);
+
+      if (score > 0) {
+        setTimeout(() => {
+            checkAndSaveScore(score);
+        }, 500);
+    }
     }
 
     function startGame() {
@@ -444,6 +455,39 @@
     classicMode.addEventListener('click', () => { mode = 'classic'; resetState(); updateUI('Modo clásico: presiona el botón encendido antes de que se acabe el tiempo.'); });
     memoryMode.addEventListener('click', () => { mode = 'memory'; resetState(); updateUI('Modo memoria: observa la secuencia y repítela en el mismo orden.'); });
     mainAction.addEventListener('click', startGame);
+
+  
+function updateHighScoresTable() {
+    const highScores = JSON.parse(localStorage.getItem('lightPressScores')) || [];
+    const list = document.getElementById('highScoresList');
+    list.innerHTML = highScores
+        .map(record => `<li style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(0,0,0,0.1); padding: 4px 0;">
+            <span>${record.name}</span>
+            <strong>${record.score}</strong>
+        </li>`)
+        .join('');
+}
+
+
+function checkAndSaveScore(currentScore) {
+    const name = prompt("¡Gran partida! Introduce tu nombre para el ranking:", "Jugador");
+    if (!name) return;
+
+    let highScores = JSON.parse(localStorage.getItem('lightPressScores')) || [];
+    
+    
+    highScores.push({ name: name, score: currentScore });
+    
+    // Ordenamos de mayor a menor y nos quedamos con los 5 mejores
+    highScores.sort((a, b) => b.score - a.score);
+    highScores = highScores.slice(0, 5);
+
+    localStorage.setItem('lightPressScores', JSON.stringify(highScores));
+    updateHighScoresTable();
+}
+
+
+updateHighScoresTable();
 
     createButtons();
     updateUI('Selecciona un modo y presiona iniciar.');
